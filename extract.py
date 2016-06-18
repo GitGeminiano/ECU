@@ -8,4 +8,4 @@ url= 'https://www.facebook.com/search/top/?q=light_prayer89%40hotmail.com'
 page = urllib2.urlopen(url)
 soup = BeautifulSoup(page.read())
 
-print soup
+rank = soup.find("div", {"class": ")rank-box"}).h6.contents
