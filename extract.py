@@ -8,4 +8,5 @@ url= 'https://www.facebook.com/search/top/?q=light_prayer89%40hotmail.com'
 page = urllib2.urlopen(url)
 soup = BeautifulSoup(page.read())
 
-print soup
+name = soup.body.div
+print name
