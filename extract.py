@@ -3,20 +3,22 @@ import sys
 from bs4 import BeautifulSoup
 import urllib2
 
-
-url= 'https://www.facebook.com/search/top/?q=light_prayer89%40hotmail.com'
+email = "light_prayer89@hotmail.com"
+email_url = email.replace("@", "%40")
+prefix = "https://www.facebook.com/search/top/?q="
+url= prefix + email_url
 page = urllib2.urlopen(url)
 soup = BeautifulSoup(page.read())
 soup_string = str(soup)
-name = soup_string.find("_5d-5")
-i = 7
-while not soup_string[name+i] == "<":
+index_div_name = soup_string.find("_5d-5")
+if index_div_name != - 1:
+  name = ""
+  offset = 7
+  while not soup_string[index_div_name+offset] == "<":
+    name += soup_string[index_div_name+offset]
+    offset = offset + 1
+  print(name)
 
-    print soup_string[name+i]
-    i = i+1
-
-
-print name
 #name = soup.find()
 #rank = soup.find({"class": "5d-4"}).contents
 #soup.find_all("a", class_="sister")
